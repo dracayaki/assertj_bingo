@@ -3,6 +3,8 @@ import org.assertj.core.api.AbstractBooleanAssert;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
+import java.beans.Transient;
+
 import static org.assertj.core.api.Assertions.*;
 public class ArrayTest {
 
@@ -189,6 +191,82 @@ public class ArrayTest {
         assertThat(prueba).containsExactly(6, 5, 4, 3, 2, 1);
     }
 
+    @Test
+    void imprimirTest(){
+        int[] array = {1, 2, 3, 4};
+        
+        
+        assertThat(UtilesArrays.imprimir(array)).isEqualTo(array);
+    }
 
+    @Test 
+    void estaOrdenadoTest(){
+        int[] array = {1, 3, 6, 2};
 
+        boolean orden = UtilesArrays.estaOrdenado(array);
+    
+        assertThat(orden).isEqualTo(false);
+    }
+
+    @Test 
+    void estaOrdenadoTest2(){
+        int[] array = {1, 2, 3, 4};
+
+        boolean orden = UtilesArrays.estaOrdenado(array);
+    
+        assertThat(orden).isEqualTo(true);
+    }
+
+    @Test 
+    void buscarTest(){
+        int[] array = {1, 2, 3, 4};
+
+        assertThat(UtilesArrays.buscar(array, 2)).isEqualTo(1);
+    }
+
+    @Test
+    void partirPorTest(){
+        int[] array = {1, 2, 3,4, 5, 6};
+        assertThat(UtilesArrays.partirPor(array, 1, 4)).containsExactly(2,3,4, 5);   
+    }
+
+    @Test
+    void sonIgualesTest(){
+        int[] array = { 1, 2 ,3, 4};
+        int[] array2 = { 1, 2 ,3, 4};
+
+        assertThat(UtilesArrays.sonIguales(array, array2)).isEqualTo(true);
+    }
+
+    @Test
+    void sonIgualesTest2(){
+        int[] array = { 1, 2 ,3, 4};
+        int[] array2 = { 1, 2 ,3, 5};
+
+        assertThat(UtilesArrays.sonIguales(array, array2)).isEqualTo(false);
+    }
+
+    @Test
+    void elementosIgualesTest(){
+        int[] array = { 1, 2 ,3, 4};
+        int[] array2 = { 1, 2 ,3, 5};
+
+        assertThat(UtilesArrays.elementosIguales(array, array2, 0)).isEqualTo(true);
+    }
+
+    @Test
+    void elementosIgualesTest2(){
+        int[] array = { 1, 2 ,3, 4};
+        int[] array2 = { 1, 2 ,3, 5};
+
+        assertThat(UtilesArrays.elementosIguales(array, array2, 3)).isEqualTo(false);
+    }
+
+    @Test 
+    void concatenarArraysTest(){
+        int[] array = {1, 2, 3, 4};
+        int[] array2 = {5, 6, 7, 8};
+
+        assertThat(UtilesArrays.concatenarArrays(array, array2)).containsExactly(1, 2, 3, 4, 5, 6, 7, 8);
+    }
 }
